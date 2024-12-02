@@ -1,0 +1,71 @@
+drop table checking;
+drop table investment;
+drop table saving;
+drop table account;
+drop table customer;
+drop table asset; 
+
+
+
+create table customer (
+    ID              varchar(5),
+    first_name      varchar(20) not null,
+    last_name       varchar(20) not null,
+    address         varchar(30) not null,
+    
+    primary key(ID)
+);
+
+create table account(
+    account_id  varchar(5) primary key,
+    balance     numeric(10,2), 
+    id varchar(5),
+
+    foreign key (id) references customer
+);
+
+create table checking(
+    account_id varchar(5),
+    routing_number numeric (8,0),
+    primary key (account_id),
+    foreign key (account_id) references account
+);
+
+create table saving(
+    account_id varchar(5),
+    interest_rate numeric (5,2),
+    primary key (account_id),
+    foreign key (account_id) references account
+);
+
+
+create table investment(
+    account_id varchar(5),
+    primary key (account_id),
+    foreign key (account_id) references account
+);
+
+create table asset(
+    account_id varchar(5),
+    asset_name varchar(15),
+    amount numeric (10,2),
+    foreign key (account_id) references investment
+);
+
+create table card(
+    
+);
+
+
+insert into customer (id, first_name, last_name, address) values (1, 'Ryan', 'Hur', '123 Fake Street');
+insert into account(account_id, balance, id) values (1, 2000, 1);
+insert into checking (account_id, routing_number) values (1, 12345678);
+
+insert into customer (id, first_name, last_name, address) values (2, 'John', 'Smith', '5 John Street');
+insert into account(account_id, balance, id) values (2, 2000, 2);
+insert into checking (account_id, routing_number) values (2, 11111111);
+
+insert into account(account_id, balance, id) values (5, 100, 1);
+insert into investment(
+
+commit

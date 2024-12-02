@@ -1,0 +1,4 @@
+javac -cp lib/ojdbc11.jar -d bin src/*.java && java -jar rsh226.jar
+
+
+javac -cp lib/ojdbc11.jar -d bin src/*.java
